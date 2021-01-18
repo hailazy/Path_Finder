@@ -35,10 +35,10 @@ class GUI:
         width: int
             Width of the window used for calculating the width of the cells.
         """
-        self.rows: int = rows
+        self.rows: int = round(rows/2)
         self.columns: int = rows
         self.width: int = width
-        self.vertex_width: int = round(width / rows)
+        self.vertex_width: int = 2*round(width / rows)
         self.graph: Graph = Graph(self.rows, self.vertex_width)
 
         self.win = pygame.display.set_mode((width, width))
@@ -63,9 +63,9 @@ class GUI:
                     (j * self.vertex_width, self.width)
                 )
 
-    def draw(self):
+    def draw(self, fps):
         """
-        Reponsible for drawing the cells and calling the draw_grid function
+        Responsible for drawing the cells and calling the draw_grid function
         which draws the grid.
         """
         self.win.fill(Colour.WHITE)
@@ -79,6 +79,8 @@ class GUI:
                 )
         #self.draw_grid()
 
+        clock = pygame.time.Clock()
+        clock.tick(fps)
         pygame.display.update()
 
     def handle_events(self) -> bool:

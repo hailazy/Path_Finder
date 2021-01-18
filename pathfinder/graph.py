@@ -8,7 +8,6 @@ import random
 from pathfinder.vertex import Vertex
 from pathfinder.util.state import State
 
-
 class Graph:
     """
     Class representing a graph with methods for managing it. However all
@@ -109,7 +108,7 @@ class Graph:
 
     def reset(self):
         """
-        Resets the graph by reseting start, destination and all vertex objects.
+        Resets the graph by resetting start, destination and all vertex objects.
         """
         self.start = None
         self.end = None
@@ -148,7 +147,7 @@ class Graph:
                 if node != self.start:
                     dist[node] = float('inf')
                     prev[node] = None
-                
+
         # Add the starting node to the queue with the distance as metric. In case of
         # a tie the current time will be used as a tie breaker so that the least recently
         # added element wins.
@@ -216,7 +215,7 @@ class Graph:
             # If the destination has been reached the shortest path has been found
             if current == self.end:
                 break
-            
+
             # Explore the current node's neighbors
             for neighbor in current.get_neighbors(self).values():
                 # Barrierer nodes are not visitable and therefore cannot be considered
@@ -243,7 +242,7 @@ class Graph:
             # Mark the current node as closed however it might be re-opened later on
             if current != self.start and current != self.end:
                 current.set_closed()
-                
+
             gui.draw()
         self.paths = prev
 
@@ -313,7 +312,7 @@ class Graph:
             GUI object used for updating the grid while the maze is being made.
         """
         self.__set_all_barriers()
-        # LIFO queue for mananging nodes with unvisited neighbors
+        # LIFO queue for managing nodes with unvisited neighbors
         queue: LifoQueue = LifoQueue()
         # Select top left as start node
         start: Vertex = self.grid[0][0]
@@ -326,7 +325,7 @@ class Graph:
             # Pop the last recently added node
             current: Vertex = queue.get()
             # List of all neighbors not yet visited
-            neighbors = [node for node in current.get_neighbors(self, 2).values() if node.state == State.BARRIER] 
+            neighbors = [node for node in current.get_neighbors(self, 2).values() if node.state == State.BARRIER]
             # If there are still unvisited neighbors push current node into the queue again
             if neighbors:
                 queue.put(current)

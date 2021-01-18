@@ -9,5 +9,3 @@ class PriorityQueue(queue.PriorityQueue):
             if key(entry) == element:
                 return True
         return False
-
-    
