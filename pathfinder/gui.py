@@ -63,7 +63,7 @@ class GUI:
                     (j * self.vertex_width, self.width)
                 )
 
-    def draw(self, fps):
+    def draw(self):
         """
         Responsible for drawing the cells and calling the draw_grid function
         which draws the grid.
@@ -80,7 +80,7 @@ class GUI:
         #self.draw_grid()
 
         clock = pygame.time.Clock()
-        clock.tick(fps)
+        clock.tick()
         pygame.display.update()
 
     def handle_events(self) -> bool:
